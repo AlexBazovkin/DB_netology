@@ -99,3 +99,7 @@ VALUES
     (7, 12),
     (8, 7),
     (8, 15);
+
+   INSERT INTO tracks(name, duration, album_id)
+VALUES
+    ('Another short track', 132, 3);

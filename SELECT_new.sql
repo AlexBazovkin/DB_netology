@@ -39,7 +39,19 @@ WHERE tr.duration <= (
 )
 GROUP BY ar.name;
 
+-- SELECT al.name FROM albums al
+-- JOIN tracks tr ON al.id = tr.album_id 
+-- GROUP BY al.name
+-- ORDER BY count(tr.id);
+
+-- updated task #9:
 SELECT al.name FROM albums al
 JOIN tracks tr ON al.id = tr.album_id 
 GROUP BY al.name
-ORDER BY count(tr.id);
+HAVING count(tr.id) <= (
+	SELECT count(tr.id) FROM albums al
+	JOIN tracks tr ON al.id = tr.album_id
+	GROUP BY al.name
+	ORDER BY count(tr.id)
+	LIMIT 1
+);

@@ -11,9 +11,17 @@ SELECT al.name, ROUND(AVG(duration), 1) FROM albums al
 JOIN tracks tr ON al.id = tr.album_id
 GROUP BY al.name;
 
-SELECT ar.name, year FROM artists ar
-JOIN albums al ON ar.id = al.id
-WHERE YEAR != 2020; 
+-- SELECT ar.name, year FROM artists ar
+-- JOIN albums al ON ar.id = al.id
+-- WHERE YEAR != 2020; 
+
+-- updated task #4:
+SELECT ar.name FROM artists ar
+JOIN albums al ON ar.id = al.id 
+WHERE YEAR != (
+	SELECT YEAR FROM albums
+	WHERE YEAR = 2020
+);
 
 SELECT col.name FROM collections col
 JOIN tracks tr ON col.id = tr.id 
